@@ -1,3 +1,5 @@
+import type { Dayjs } from "dayjs";
+
 export type Availability = "busy" | "flexible";
 export type Category = {
   id: number;
@@ -11,26 +13,17 @@ export type TimeBlock = {
   title: string;
   categoryId: number;
   availability: Availability;
-  startTime: string;
-  endTime: string;
+  startTime: Dayjs;
+  endTime: Dayjs;
   description?: string;
-  recurringStartDate?: string;
-  recurringEndDate?: string;
+  recurringStartDate?: Dayjs;
+  recurringEndDate?: Dayjs;
   weekdays: number[];
-  timeZone: string;
+  timezone: string;
 };
 export type TimeBlockDraft = Omit<TimeBlock, "id" | "userId">;
 export type TimeBlockException = {
   id: number;
   timeBlockId: string;
   date: string;
-};
-// A visible instance of a block; originalDate identifies one recurring day for skip/restore.
-export type TimeBlockOccurrence = {
-  id: string;
-  timeBlockId: string;
-  originalDate: string;
-  startTime: string;
-  endTime: string;
-  block: TimeBlock;
 };
